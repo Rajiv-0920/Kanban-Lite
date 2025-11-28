@@ -1,0 +1,10 @@
+{
+  "board": {
+    "tasks": [
+      { "id": 1, "title": "Fix Login Bug", "status": "TODO" },
+      { "id": 2, "title": "Learn Redux", "status": "IN_PROGRESS" }
+    ],
+    "loading": false,
+    "error": null
+  }
+}
