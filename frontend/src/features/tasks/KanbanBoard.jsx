@@ -4,7 +4,7 @@ import TaskCard from './TaskCard'
 import CreateTaskDialog from './CreateTaskDialog'
 import Column from './Column'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTasks, updateTask } from './TaskSlice'
+import { fetchTasks, updateTask } from './taskSlice'
 
 const COLUMNS = [
   { id: 'pending', label: 'Pending' },

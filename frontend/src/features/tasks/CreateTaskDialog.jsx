@@ -14,7 +14,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Plus } from 'lucide-react'
 import { useDispatch } from 'react-redux'
-import { createTask } from './TaskSlice'
+import { createTask } from './taskSlice'
 
 export default function CreateTaskDialog() {
   // 1. Create a state to control whether the dialog is Open or Closed
@@ -27,13 +27,16 @@ export default function CreateTaskDialog() {
     setTask({ ...task, [e.target.id]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    dispatch(createTask(task))
-    setTask({ title: '', description: '' })
-
-    // 2. Close the dialog using state
-    setOpen(false)
+    try {
+      await dispatch(createTask(task)).unwrap()
+      setTask({ title: '', description: '' })
+      setOpen(false)
+    } catch (error) {
+      // TODO: show an error message / toast instead of silently failing
+      console.error('Failed to create task', error)
+    }
   }
 
   return (

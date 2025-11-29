@@ -2,7 +2,7 @@ import React from 'react'
 import { useDraggable } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
 import { useDispatch } from 'react-redux' // 1. Import dispatch
-import { deleteTask } from './TaskSlice' // 2. Import delete action
+import { deleteTask } from './taskSlice' // 2. Import delete action
 import UpdateTaskDialog from './UpdateTaskDialog' // 3. Import Edit Dialog
 
 import {
