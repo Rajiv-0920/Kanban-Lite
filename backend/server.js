@@ -1,6 +1,8 @@
 import express from 'express'
 import 'dotenv/config'
 import path from 'path'
+import cors from 'cors'
+
 import { connectDB } from './config/db.js'
 import taskRoutes from './routes/task.route.js'
 
@@ -9,6 +11,8 @@ const PORT = process.env.PORT
 const __dirname = path.resolve()
 
 app.use(express.json())
+app.use(cors())
+
 app.use('/api/tasks', taskRoutes)
 
 if (process.env.NODE_ENV === 'production') {
