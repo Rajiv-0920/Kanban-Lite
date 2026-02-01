@@ -27,19 +27,19 @@ Kanban-Lite is a lightweight, single-page Kanban board application for managing 
 
 ### Main Board View
 <p align="center">
-  <img src="public/screenshots/main-board.jpg" alt="Kanban Board" width="800"/>
+  <img src="./frontend/public/screenshots/main-board.jpg" alt="Kanban Board" width="800"/>
 </p>
 <p align="center"><i>Main Kanban board showing columns and task cards</i></p>
 
 ### Task Creation
 <p align="center">
-  <img src="public/screenshots/create-task.jpg" alt="Create Task Dialog" width="600"/>
+  <img src="./frontend/public/screenshots/create-task.jpg" alt="Create Task Dialog" width="600"/>
 </p>
 <p align="center"><i>Create task dialog for adding new tasks</i></p>
 
 ### Drag and Drop Demo
 <p align="center">
-  <img src="public/screenshots/drag-drop-demo.gif" alt="Drag and Drop" width="700"/>
+  <img src="./frontend/public/screenshots/drag-drop-demo.gif" alt="Drag and Drop" width="700"/>
 </p>
 <p align="center"><i>Dragging tasks between columns</i></p>
 
