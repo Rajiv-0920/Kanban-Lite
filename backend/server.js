@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 app.use(express.json());
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://kanban-lite-eta.vercel.app/',
+  'https://kanban-lite-eta.vercel.app',
 ];
 app.use(
   cors({
