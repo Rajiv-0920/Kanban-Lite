@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api/tasks`;
+const API_URL = `${import.meta.env.VITE_API_URL || 'https://kanban-lite-wbs7.onrender.com'}/api/tasks`;
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
