@@ -1,62 +1,62 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   board: [],
   loading: false,
   error: null,
-}
+};
 
-const API_URL = 'http://localhost:3000/api/tasks'
+const API_URL = `${import.meta.env.VITE_API_URL}/api/tasks`;
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(API_URL)
-      return response.data // This becomes action.payload in 'fulfilled'
+      const response = await axios.get(API_URL);
+      return response.data; // This becomes action.payload in 'fulfilled'
     } catch (error) {
       // rejectWithValue allows us to send custom error data to the reducer
-      return rejectWithValue(error.message || 'Something went wrong')
+      return rejectWithValue(error.message || 'Something went wrong');
     }
-  }
-)
+  },
+);
 
 export const createTask = createAsyncThunk(
   'tasks/createTask',
   async (taskData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(API_URL, taskData)
-      return response.data
+      const response = await axios.post(API_URL, taskData);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message || 'Failed to create task')
+      return rejectWithValue(error.message || 'Failed to create task');
     }
-  }
-)
+  },
+);
 
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${API_URL}/${id}`, formData)
-      return response.data
+      const response = await axios.put(`${API_URL}/${id}`, formData);
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message || 'Failed to update task')
+      return rejectWithValue(error.message || 'Failed to update task');
     }
-  }
-)
+  },
+);
 
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`${API_URL}/${id}`)
-      return id // Return the deleted task's ID
+      await axios.delete(`${API_URL}/${id}`);
+      return id; // Return the deleted task's ID
     } catch (error) {
-      return rejectWithValue(error.message || 'Failed to delete task')
+      return rejectWithValue(error.message || 'Failed to delete task');
     }
-  }
-)
+  },
+);
 
 export const taskSlice = createSlice({
   name: 'tasks',
@@ -66,35 +66,35 @@ export const taskSlice = createSlice({
     builder
       // Case 1: Request started
       .addCase(fetchTasks.pending, (state) => {
-        state.loading = true
-        state.error = null
+        state.loading = true;
+        state.error = null;
       })
       // Case 2: Request successful
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.loading = false
-        state.board = action.payload // The data returned from the thunk
+        state.loading = false;
+        state.board = action.payload; // The data returned from the thunk
       })
       // Case 3: Request failed
       .addCase(fetchTasks.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload // The error message from rejectWithValue
+        state.loading = false;
+        state.error = action.payload; // The error message from rejectWithValue
       })
       .addCase(createTask.fulfilled, (state, action) => {
-        state.loading = false
-        state.board.push(action.payload) // Add the new task to the board
+        state.loading = false;
+        state.board.push(action.payload); // Add the new task to the board
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         const index = state.board.findIndex(
-          (task) => task._id === action.payload._id
-        )
+          (task) => task._id === action.payload._id,
+        );
         if (index !== -1) {
-          state.board[index] = action.payload
+          state.board[index] = action.payload;
         }
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        state.board = state.board.filter((task) => task._id !== action.payload)
-      })
+        state.board = state.board.filter((task) => task._id !== action.payload);
+      });
   },
-})
+});
 
-export default taskSlice.reducer
+export default taskSlice.reducer;

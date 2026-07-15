@@ -12,7 +12,7 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 const allowedOrigins = [
-  'http://localhost:3000',
+  'http://localhost:5173',
   'https://kanban-lite.vercel.app',
 ];
 app.use(
@@ -26,7 +26,6 @@ app.use(
       }
       return callback(null, true);
     },
-    credentials: true,
   }),
 );
 
